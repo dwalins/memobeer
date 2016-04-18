@@ -21,7 +21,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 
-$factory->define(App\Task::class, function (Faker\Generator $faker) {
+$factory->define(App\Beer::class, function (Faker\Generator $faker) {
     return [
         'name' => str_random(10),
     ];

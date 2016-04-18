@@ -5,7 +5,7 @@ namespace App;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
-class Task extends Model
+class Beer extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -24,7 +24,7 @@ class Task extends Model
     ];
 
     /**
-     * Get the user that owns the task.
+     * Get the user that owns the beer.
      */
     public function user()
     {

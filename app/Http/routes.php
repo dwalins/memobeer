@@ -28,9 +28,9 @@ Route::group(['middleware' => ['web']], function () {
         return view('welcome');
     })->middleware('guest');
 
-    Route::get('/tasks', 'TaskController@index');
-    Route::post('/task', 'TaskController@store');
-    Route::delete('/task/{task}', 'TaskController@destroy');
+    Route::get('/beers', 'BeerController@index');
+    Route::post('/beer', 'BeerController@store');
+    Route::delete('/beer/{beer}', 'BeerController@destroy');
 
     Route::auth();
 

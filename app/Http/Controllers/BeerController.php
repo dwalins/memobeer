@@ -7,46 +7,46 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Task;
-use App\Repositories\TaskRepository;
+use App\Beer;
+use App\Repositories\BeerRepository;
 
-class TaskController extends Controller
+class BeerController extends Controller
 {
     /**
-     * The task repository instance.
+     * The Beer repository instance.
      *
-     * @var TaskRepository
+     * @var BeerRepository
      */
-    protected $tasks;
+    protected $beers;
 
     /**
      * Create a new controller instance.
      *
-     * @param  TaskRepository  $tasks
+     * @param  BeerRepository  $Beers
      * @return void
      */
-    public function __construct(TaskRepository $tasks)
+    public function __construct(BeerRepository $Beers)
     {
         $this->middleware('auth');
 
-        $this->tasks = $tasks;
+        $this->beers = $Beers;
     }
 
     /**
-     * Display a list of all of the user's task.
+     * Display a list of all of the user's Beer.
      *
      * @param  Request  $request
      * @return Response
      */
     public function index(Request $request)
     {
-        return view('tasks.index', [
-            'tasks' => $this->tasks->forUser($request->user()),
+        return view('beers.index', [
+            'beers' => $this->beers->forUser($request->user()),
         ]);
     }
 
     /**
-     * Create a new task.
+     * Create a new beer.
      *
      * @param  Request  $request
      * @return Response
@@ -57,26 +57,26 @@ class TaskController extends Controller
             'name' => 'required|max:255',
         ]);
 
-        $request->user()->tasks()->create([
+        $request->user()->beers()->create([
             'name' => $request->name,
         ]);
 
-        return redirect('/tasks');
+        return redirect('/beers');
     }
 
     /**
-     * Destroy the given task.
+     * Destroy the given beer.
      *
      * @param  Request  $request
-     * @param  Task  $task
+     * @param  Beer  $beer
      * @return Response
      */
-    public function destroy(Request $request, Task $task)
+    public function destroy(Request $request, Beer $beer)
     {
-        $this->authorize('destroy', $task);
+        $this->authorize('destroy', $beer);
 
-        $task->delete();
+        $beer->delete();
 
-        return redirect('/tasks');
+        return redirect('/beers');
     }
 }

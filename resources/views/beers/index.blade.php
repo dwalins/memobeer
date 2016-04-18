@@ -5,7 +5,7 @@
         <div class="col-sm-offset-2 col-sm-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    New Task
+                    New Beer
                 </div>
 
                 <div class="panel-body">
@@ -13,15 +13,15 @@
                     @include('common.errors')
 
                     <!-- New Task Form -->
-                    <form action="/task" method="POST" class="form-horizontal">
+                    <form action="/beer" method="POST" class="form-horizontal">
                         {{ csrf_field() }}
 
                         <!-- Task Name -->
                         <div class="form-group">
-                            <label for="task-name" class="col-sm-3 control-label">Task</label>
+                            <label for="task-name" class="col-sm-3 control-label">Beer name</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="name" id="task-name" class="form-control" value="{{ old('task') }}">
+                                <input type="text" name="name" id="task-name" class="form-control" value="{{ old('beer') }}" placeholder="ex. Tripel Karmeliet">
                             </div>
                         </div>
 
@@ -29,7 +29,7 @@
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">
                                 <button type="submit" class="btn btn-default">
-                                    <i class="fa fa-btn fa-plus"></i>Add Task
+                                    <i class="fa fa-btn fa-plus"></i>Add Beer
                                 </button>
                             </div>
                         </div>
@@ -38,30 +38,30 @@
             </div>
 
             <!-- Current Tasks -->
-            @if (count($tasks) > 0)
+            @if (count($beers) > 0)
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Current Tasks
+                        Beers to buy
                     </div>
 
                     <div class="panel-body">
                         <table class="table table-striped task-table">
                             <thead>
-                                <th>Task</th>
+                                <th>Beer</th>
                                 <th>&nbsp;</th>
                             </thead>
                             <tbody>
-                                @foreach ($tasks as $task)
+                                @foreach ($beers as $beer)
                                     <tr>
-                                        <td class="table-text"><div>{{ $task->name }}</div></td>
+                                        <td class="table-text"><div>{{ $beer->name }}</div></td>
 
                                         <!-- Task Delete Button -->
                                         <td>
-                                            <form action="/task/{{ $task->id }}" method="POST">
+                                            <form action="/beer/{{ $beer->id }}" method="POST">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
 
-                                                <button type="submit" id="delete-task-{{ $task->id }}" class="btn btn-danger">
+                                                <button type="submit" id="delete-task-{{ $beer->id }}" class="btn btn-danger">
                                                     <i class="fa fa-btn fa-trash"></i>Delete
                                                 </button>
                                             </form>

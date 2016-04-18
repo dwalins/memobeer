@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel Quickstart - Intermediate</title>
+    <title>Memo Beer - List your beers</title>
 
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
@@ -23,6 +23,11 @@
         .fa-btn {
             margin-right: 6px;
         }
+        .icon-top{
+            float:left;
+            padding-top:7px;
+            padding-right:5px;
+        }
     </style>
 </head>
 <body id="app-layout">
@@ -39,8 +44,9 @@
                 </button>
 
                 <!-- Branding Image -->
+                <a href="{{ url('/') }}"><img src="{{asset("/images/icon-top-small.png")}}" class="icon-top"></a>
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Task List
+                    Memobeer
                 </a>
             </div>
 
