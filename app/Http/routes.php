@@ -28,9 +28,13 @@ Route::group(['middleware' => ['web']], function () {
         return view('welcome');
     })->middleware('guest');
 
-    Route::get('/beers', 'BeerController@index');
-    Route::post('/beer', 'BeerController@store');
-    Route::delete('/beer/{beer}', 'BeerController@destroy');
+    // Route::get('/beers', 'BeerController@index');
+    // Route::post('/beer', 'BeerController@store');
+    // Route::delete('/beer/{beer}', 'BeerController@destroy');
+
+    Route::get('/lists', 'BeerslistController@index');
+    Route::post('/list', 'BeerslistController@store');
+    Route::delete('/list/{beerslist}', 'BeerslistController@destroy');
 
     Route::get('search/autocomplete', 'SearchController@autocomplete');
 

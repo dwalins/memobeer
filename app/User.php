@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Beer;
+use App\Beerslist;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -26,10 +27,10 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get all of the beers for the user.
+     * Get all of the beerslists for the user.
      */
-    public function beers()
+    public function beerslists()
     {
-        return $this->hasMany(Beer::class);
+        return $this->hasMany(Beerslist::class);
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Beer;
+use App\Beerslist;
 use App\Repositories\BeerRepository;
 
 class BeerController extends Controller
@@ -25,25 +26,12 @@ class BeerController extends Controller
      * @param  BeerRepository  $Beers
      * @return void
      */
-    public function __construct(BeerRepository $Beers)
+    public function __construct(BeerRepository $beers)
     {
         $this->middleware('auth');
-
-        $this->beers = $Beers;
+        $this->beers = $beers;
     }
 
-    /**
-     * Display a list of all of the user's Beer.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
-    public function index(Request $request)
-    {
-        return view('beers.index', [
-            'beers' => $this->beers->forUser($request->user()),
-        ]);
-    }
 
     /**
      * Create a new beer.
@@ -51,18 +39,20 @@ class BeerController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required|max:255',
-        ]);
+    // public function store(Request $request)
+    // {
 
-        $request->user()->beers()->create([
-            'name' => $request->name,
-        ]);
+    //     $this->validate($request, [
+    //         'name' => 'required|max:255',
+    //         'beerid' => 'required'
+    //     ]);
 
-        return redirect('/beers');
-    }
+    //     $request->user()->beers()->create([
+    //         'name' => $request->beerid,
+    //     ]);
+
+    //     return redirect('/lists');
+    // }
 
     /**
      * Destroy the given beer.
@@ -71,12 +61,12 @@ class BeerController extends Controller
      * @param  Beer  $beer
      * @return Response
      */
-    public function destroy(Request $request, Beer $beer)
-    {
-        $this->authorize('destroy', $beer);
+    // public function destroy(Request $request, Beer $beer)
+    // {
+    //     $this->authorize('destroy', $beer);
 
-        $beer->delete();
+    //     $beer->delete();
 
-        return redirect('/beers');
-    }
+    //     return redirect('/lists');
+    // }
 }

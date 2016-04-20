@@ -3,6 +3,7 @@
 namespace App;
 
 use App\User;
+use App\Beerslist;
 use Illuminate\Database\Eloquent\Model;
 
 class Beer extends Model
@@ -12,22 +13,20 @@ class Beer extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    //protected $fillable = ['name'];
+    //protected $fillable = array('username', 'email', 'password');
     
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $casts = [
-        'user_id' => 'int',
-    ];
-
-    /**
-     * Get the user that owns the beer.
-     */
-    public function user()
+    // protected $casts = [
+    //     'user_id' => 'int',
+    // ];
+    public function beerslist()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(Beerslist::class);
     }
+
 }

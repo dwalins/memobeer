@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\User;
-use App\Beer;
+use App\Beerslist;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class BeerPolicy
+class BeerslistPolicy
 {
     use HandlesAuthorization;
 
@@ -14,11 +14,11 @@ class BeerPolicy
      * Determine if the given user can delete the given beer.
      *
      * @param  User  $user
-     * @param  Beer  $beer
+     * @param  Beerslist  $beerslist
      * @return bool
      */
-    public function destroy(User $user, Beer $beer)
+    public function destroy(User $user, Beerslist $beerslist)
     {
-        return $user->id === $beer->user_id;
+        return $user->id == $beerslist->user_id;
     }
 }

@@ -38,6 +38,24 @@
         .ui-autocomplete-loading {
             background: white url("images/ui-anim_basic_16x16.gif") right 5px center no-repeat;
           }
+
+        .ui-autocomplete img{
+            width:25px;
+            height:25px;
+            margin-right:5px;
+            border-style: none;
+        }
+        .ui-autocomplete a img{
+            border-style: none;
+        }
+        .new-list-container{
+            margin-top:15px;
+            margin-bottom:15px;
+        }
+
+        .beerslist{
+            margin-bottom:25px;
+        }
     </style>
 </head>
 <body id="app-layout">
