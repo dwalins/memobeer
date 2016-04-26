@@ -33,11 +33,16 @@ Route::group(['middleware' => ['web']], function () {
     // Route::delete('/beer/{beer}', 'BeerController@destroy');
 
     Route::get('/lists', 'BeerslistController@index');
+    Route::get('/list/{list_id}', 'BeerslistController@edit');
     Route::post('/list', 'BeerslistController@store');
+    Route::post('/edit/{list_id}', 'BeerslistController@edit_submit');
     Route::delete('/list/{beerslist}', 'BeerslistController@destroy');
 
     Route::get('search/autocomplete', 'SearchController@autocomplete');
 
     Route::auth();
+
+    Route::get('/redirect', 'SocialAuthController@redirect');
+    Route::get('/login/callback/facebook', 'SocialAuthController@callback');
 
 });

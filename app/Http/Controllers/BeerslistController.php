@@ -80,4 +80,39 @@ class BeerslistController extends Controller
 
         return redirect('/lists');
     }
+
+    /**
+     * Edit a list.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    public function edit(Request $request, $list_id)
+    {
+        $beerslist = Beerslist::find($list_id);
+        return view('beerslists.edit', [
+            'beerslist' => $beerslist,
+        ]);
+    }
+
+    /**
+     * Edit a list.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    public function edit_submit(Request $request, $list_id)
+    {
+
+
+        $this->validate($request, [
+            'name' => 'required|max:255',
+        ]);
+
+        $list = Beerslist::find($list_id);
+        $list->name = $request->name;
+        $list->save();
+
+        return redirect('/lists');
+    }
 }

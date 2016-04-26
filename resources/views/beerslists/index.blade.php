@@ -45,8 +45,16 @@
                                     Content of each list.
                                     </div> 
                                 </div>
+                                <div class="btn-group">
+                                    <form action="/list/{{ $list->id }}" method="GET">
+                                    {{ csrf_field() }}
 
-                                <div>
+                                    <button type="submit" id="delete-task-{{ $list->id }}" class="btn btn-primary">
+                                    <i class="fa fa-btn fa-edit"></i>Edit "{{ $list->name }}" ?
+                                    </button>
+                                    </form>
+                                </div>
+                                <div class="btn-group">
                                     <form action="/list/{{ $list->id }}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
@@ -56,6 +64,7 @@
                                     </button>
                                     </form>
                                 </div>
+
 
                     </div>
                 @endforeach

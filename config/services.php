@@ -34,5 +34,11 @@ return [
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    //Socialite
+    'facebook' => [
+        'client_id'     => '170224580039471',
+        'client_secret' => 'cebcc476d1f2ed5c787ca09f6ef1e58d',
+        'redirect'      => 'http://memobeer.local/login/callback/facebook',
+    ],
 
 ];
