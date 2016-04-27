@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\Beerslist;
 use App\Repositories\BeerslistRepository;
+use Session;
 
 class BeerslistController extends Controller
 {
@@ -58,10 +59,8 @@ class BeerslistController extends Controller
             'name' => 'required|max:255',
         ]);
 
-        $request->user()->beerslists()->create([
-            'name' => $request->name,
-        ]);
-
+        $request->user()->beerslists()->create(['name' => $request->name,]);
+        Session::flash('flash_message', 'List successfully created !');
         return redirect('/lists');
     }
 
@@ -77,7 +76,7 @@ class BeerslistController extends Controller
         $this->authorize('destroy', $beerslist);
 
         $beerslist->delete();
-
+        Session::flash('flash_message', 'List successfully deleted !');
         return redirect('/lists');
     }
 
@@ -112,7 +111,7 @@ class BeerslistController extends Controller
         $list = Beerslist::find($list_id);
         $list->name = $request->name;
         $list->save();
-
+        Session::flash('flash_message', 'List successfully edited !');
         return redirect('/lists');
     }
 }

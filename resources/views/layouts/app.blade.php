@@ -52,9 +52,27 @@
             margin-top:15px;
             margin-bottom:15px;
         }
+        .new-list-button{
+            margin-left:5px;
+        }
 
         .beerslist{
-            margin-bottom:25px;
+            /*margin-bottom:25px;*/
+        }
+        .delete-btn, .edit-btn{
+            display:inline-block;
+            float:right;
+        }
+        .borderless-button{
+            border: none;
+            background: none;
+        }
+
+        .btn-delete{
+            /*color:#d9534f;*/
+        }
+        .btn-edit{
+            /*color:#337ab7;*/
         }
     </style>
 </head>

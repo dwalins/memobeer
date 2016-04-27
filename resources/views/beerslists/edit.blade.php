@@ -20,7 +20,7 @@
                                         </div>
                                     </div>
                                     <!-- Add list Button -->
-                                    <div class="col-sm-4 col-xs-4 new-list-button">
+                                    <div class="col-sm-3 col-xs-3 new-list-button">
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-default">
                                                 <i class="fa fa-btn fa-plus button expand"></i>Edit list name

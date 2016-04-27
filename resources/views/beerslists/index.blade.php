@@ -3,11 +3,17 @@
 @section('content')
     <div class="container">
         <div class="col-sm-offset-2 col-sm-8">
-
-
             <!-- Lists -->
 
             <div class="new-list-container col-sm-12">
+
+                @if (Session::has('flash_message'))
+                <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ Session::get('flash_message') }}
+                </div>
+                @endif
+
                 <!-- Display Validation Errors -->
                 @include('common.errors')
 
@@ -22,7 +28,7 @@
                         </div>
                     </div>
                     <!-- Add list Button -->
-                    <div class="col-sm-4 col-xs-4 new-list-button">
+                    <div class="col-sm-2 col-xs-2 new-list-button">
                         <div class="form-group">
                             <button type="submit" class="btn btn-default">
                                 <i class="fa fa-btn fa-plus button expand"></i>New list
@@ -37,34 +43,37 @@
                     <div class="col-sm-12 col-xs-12 beerslist">
                         <!-- Current lists -->
 
-                                <div class="panel panel-default">
+                                <div class="panel panel-primary">
                                     <div class="panel-heading">
-                                       {{ $list->name }}
+
+                                        <span class="panel-title">{{ $list->name }}</span>
+
+                                        <div class="btn-group pull-right">
+                                            <div class="btn-group">
+                                                    <form action="/list/{{ $list->id }}" method="GET">
+                                                        {{ csrf_field() }}
+                                                        <button type="submit" class="borderless-button btn-edit">
+                                                            <i class="fa fa-btn fa-edit"></i>
+                                                        </button>
+                                                    </form>
+                                            </div>
+       
+                                            <div class="btn-group">
+                                                    <form action="/list/{{ $list->id }}" method="POST">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <button type="submit" class="borderless-button btn-delete">
+                                                            <i class="fa fa-btn fa-trash"></i>
+                                                        </button>
+                                                    </form>
+                                            </div>
+                                        </div>
+
                                     </div>
                                     <div class="panel-body">
                                     Content of each list.
                                     </div> 
                                 </div>
-                                <div class="btn-group">
-                                    <form action="/list/{{ $list->id }}" method="GET">
-                                    {{ csrf_field() }}
-
-                                    <button type="submit" id="delete-task-{{ $list->id }}" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-edit"></i>Edit "{{ $list->name }}" ?
-                                    </button>
-                                    </form>
-                                </div>
-                                <div class="btn-group">
-                                    <form action="/list/{{ $list->id }}" method="POST">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-
-                                    <button type="submit" id="delete-task-{{ $list->id }}" class="btn btn-danger">
-                                    <i class="fa fa-btn fa-trash"></i>Delete "{{ $list->name }}" ?
-                                    </button>
-                                    </form>
-                                </div>
-
 
                     </div>
                 @endforeach
