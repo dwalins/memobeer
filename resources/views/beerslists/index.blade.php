@@ -62,7 +62,7 @@
                                                     <form action="/list/{{ $list->id }}" method="POST">
                                                         {{ csrf_field() }}
                                                         {{ method_field('DELETE') }}
-                                                        <button type="submit" class="borderless-button btn-delete">
+                                                        <button type="submit" class="borderless-button btn-delete" onclick="return confirm('Are you sure you want to delete this list?');">
                                                             <i class="fa fa-btn fa-trash"></i>
                                                         </button>
                                                     </form>
@@ -71,8 +71,32 @@
 
                                     </div>
                                     <div class="panel-body">
-                                    Content of each list.
-                                    </div> 
+                                    <!-- New Beer Form -->
+                                    <form action="/beer" method="POST" class="form-horizontal" style="display:none;">
+                                        {{ csrf_field() }}
+
+                                        <!-- Beer Name -->
+                                        <div class="form-group">
+
+                                            <div class="col-sm-9">
+                                                <input type="text" name="name" id="beer-name" class="beer-name-{{ $list->id }} form-control" value="{{ old('beer') }}" placeholder="ex. Tripel Karmeliet">
+                                                <input type="hidden" name="beerid" id="beerid">
+                                                <input type="hidden" name="beerslistid" id="beerslistid" value="{{ $list->id }}">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fa fa-btn fa-plus button expand"></i>Add Beer
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <ul>
+                                    @foreach ($list->beers as $beer)
+                                    <li>{{ $beer->name }}</li>
+                                    @endforeach
+                                    </ul>
+
+                                </div> 
                                 </div>
 
                     </div>

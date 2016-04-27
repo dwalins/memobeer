@@ -13,7 +13,7 @@ class Beerslist extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = array('name', 'color');
     //protected $fillable = array('username', 'email', 'password');
 
 	/**
@@ -29,6 +29,6 @@ class Beerslist extends Model
 	*/
 	public function beers()
 	{
-		return $this->hasMany(Beer::class);
+		return $this->belongsToMany('App\Beer', 'beer_beerslist');
 	}
 }

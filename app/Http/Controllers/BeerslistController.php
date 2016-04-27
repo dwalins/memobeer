@@ -41,8 +41,11 @@ class BeerslistController extends Controller
      */
     public function index(Request $request)
     {
+
+        $beerslists = $this->beerslists->forUser($request->user());
+
         return view('beerslists.index', [
-            'beerslists' => $this->beerslists->forUser($request->user()),
+            'beerslists' => $beerslists,
         ]);
     }
 
@@ -59,7 +62,7 @@ class BeerslistController extends Controller
             'name' => 'required|max:255',
         ]);
 
-        $request->user()->beerslists()->create(['name' => $request->name,]);
+        $request->user()->beerslists()->create(['name' => $request->name, 'color' => 'blue']);
         Session::flash('flash_message', 'List successfully created !');
         return redirect('/lists');
     }
@@ -90,7 +93,7 @@ class BeerslistController extends Controller
     {
         $beerslist = Beerslist::find($list_id);
         return view('beerslists.edit', [
-            'beerslist' => $beerslist,
+            'list' => $beerslist,
         ]);
     }
 
@@ -110,6 +113,7 @@ class BeerslistController extends Controller
 
         $list = Beerslist::find($list_id);
         $list->name = $request->name;
+        $list->color = $request->color;
         $list->save();
         Session::flash('flash_message', 'List successfully edited !');
         return redirect('/lists');

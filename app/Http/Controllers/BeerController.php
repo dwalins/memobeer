@@ -11,6 +11,8 @@ use App\Beer;
 use App\Beerslist;
 use App\Repositories\BeerRepository;
 
+use Session;
+
 class BeerController extends Controller
 {
     /**
@@ -39,20 +41,25 @@ class BeerController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    // public function store(Request $request)
-    // {
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'beerid' => 'required',
+            'beerslistid' => 'required'
+        ]);
 
-    //     $this->validate($request, [
-    //         'name' => 'required|max:255',
-    //         'beerid' => 'required'
-    //     ]);
+        $beer = Beer::find($request->beerid);
+        $list = Beerslist::find($request->beerslistid);
 
-    //     $request->user()->beers()->create([
-    //         'name' => $request->beerid,
-    //     ]);
+        $list->beers()->attach($beer);
 
-    //     return redirect('/lists');
-    // }
+        Session::flash('flash_message', 'Beer successfully added !');
+        
+        return redirect('/list/'.$request->beerslistid);
+
+ 
+    }
 
     /**
      * Destroy the given beer.
@@ -61,12 +68,18 @@ class BeerController extends Controller
      * @param  Beer  $beer
      * @return Response
      */
-    // public function destroy(Request $request, Beer $beer)
-    // {
-    //     $this->authorize('destroy', $beer);
+    public function destroy(Request $request, $beerslist_id, $beer_id)
+    {
+        
+        $beerslist = Beerslist::find($beerslist_id);
+        $beer = Beer::find($beer_id);
+        //$this->authorize('destroy', $beer);
 
-    //     $beer->delete();
+        if($beerslist->user_id == $request->user()->id){
+            $beerslist->beers()->detach($beer);
+        }
+        Session::flash('flash_message', 'Beer successfully deleted !');
+        return redirect('/list/'.$beerslist->id);
 
-    //     return redirect('/lists');
-    // }
+    }
 }

@@ -5,22 +5,30 @@
         <div class="col-sm-offset-2 col-sm-8">
 
             <div class="col-sm-12 col-xs-12 beerslist">
+
+                @if (Session::has('flash_message'))
+                <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ Session::get('flash_message') }}
+                </div>
+                @endif
+
                 <!-- Current lists -->
 
-                        <div class="panel panel-default">
+                        <div class="panel panel-primary">
                             <div class="panel-heading" style="height:55px;">
 
-                                <form action="/edit/{{$beerslist->id}}" method="POST" class="form-horizontal">
+                                <form action="/edit/{{$list->id}}" method="POST" class="form-horizontal">
                                     {{ csrf_field() }}
 
                                     <!-- List Name -->
-                                    <div class="col-sm-8 col-xs-8">
+                                    <div class="col-sm-9 col-xs-9">
                                         <div class="form-group">
-                                            <input type="text" name="name" id="list-name" class="form-control" value="{{ $beerslist->name }}">
+                                            <input type="text" name="name" id="list-name" class="form-control" value="{{ $list->name }}">
                                         </div>
                                     </div>
                                     <!-- Add list Button -->
-                                    <div class="col-sm-3 col-xs-3 new-list-button">
+                                    <div class="col-sm-2 col-xs-2 new-list-button">
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-default">
                                                 <i class="fa fa-btn fa-plus button expand"></i>Edit list name
@@ -30,9 +38,45 @@
                                 </form>
 
                             </div>
-                            <div class="panel-body">
-                            Content of each list.
-                            </div> 
+                                <div class="panel-body">
+                                    <!-- New Beer Form -->
+                                    <form action="/beer" method="POST" class="form-horizontal">
+                                        {{ csrf_field() }}
+
+                                        <!-- Beer Name -->
+                                        <div class="form-group">
+
+                                            <div class="col-sm-9">
+                                                <input type="text" name="name" id="beer-name" class="beer-name-{{ $list->id }} form-control" value="{{ old('beer') }}" placeholder="ex. Tripel Karmeliet">
+                                                <input type="hidden" name="beerid" id="beerid">
+                                                <input type="hidden" name="beerslistid" id="beerslistid" value="{{ $list->id }}">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fa fa-btn fa-plus button expand"></i>Add Beer
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <ul>
+                                    @foreach ($list->beers as $beer)
+                                    <li>{{ $beer->name }}
+                                        <div class="btn-group">
+                                            <form action="/beer/{{ $list->id }}/{{ $beer->id }}" method="POST">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+
+                                            <button type="submit" id="delete-beer-{{ $beer->id }}" class="btn btn-danger">
+                                            <i class="fa fa-btn fa-trash"></i>Delete "{{ $beer->name }}" ?
+                                            </button>
+                                            </form>
+                                        </div>
+                                    </li>
+
+                                    @endforeach
+                                    </ul>
+
+                                </div>
                         </div>
                         <div class="btn-group">
                         <a class="btn btn-default" href="/lists">
@@ -40,12 +84,12 @@
                         </a>
                         </div>
                         <div class="btn-group">
-                            <form action="/list/{{ $beerslist->id }}" method="POST">
+                            <form action="/list/{{ $list->id }}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
 
-                            <button type="submit" id="delete-task-{{ $beerslist->id }}" class="btn btn-danger">
-                            <i class="fa fa-btn fa-trash"></i>Delete "{{ $beerslist->name }}" ?
+                            <button type="submit" id="delete-task-{{ $list->id }}" class="btn btn-danger">
+                            <i class="fa fa-btn fa-trash"></i>Delete "{{ $list->name }}" ?
                             </button>
                             </form>
                         </div>

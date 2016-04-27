@@ -10,13 +10,12 @@ class BeerRepository
     /**
      * Get all of the beers for a given user.
      *
-     * @param  User  $user
+     * @param  Beerslist  $beerslist
      * @return Collection
      */
-    public function forUser(User $user)
+    public function forList(Beerslist $beerslist)
     {
-        return Beer::where('user_id', $user->id)
-                    ->orderBy('created_at', 'asc')
+        return Beer::where('beerslist_id', $beerslist->id)
                     ->get();
     }
 }

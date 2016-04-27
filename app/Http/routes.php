@@ -38,6 +38,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/edit/{list_id}', 'BeerslistController@edit_submit');
     Route::delete('/list/{beerslist}', 'BeerslistController@destroy');
 
+    Route::post('/beer', 'BeerController@store');
+    Route::delete('/beer/{list_id}/{beer_id}', 'BeerController@destroy');
+
     Route::get('search/autocomplete', 'SearchController@autocomplete');
 
     Route::auth();

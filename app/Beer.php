@@ -26,7 +26,7 @@ class Beer extends Model
     // ];
     public function beerslist()
     {
-        return $this->belongsToMany(Beerslist::class);
+        return $this->belongsToMany('App\Beerslist');
     }
 
 }

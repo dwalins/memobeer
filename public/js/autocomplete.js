@@ -7,7 +7,7 @@ $(function()
 
 
 	 $project.autocomplete({
-	  source: "search/autocomplete",
+	  source: "/search/autocomplete",
 	  minLength: 3,
 	  select: function(event, ui) {
 	  	$('#beer-name').val(ui.item.value);
@@ -16,7 +16,6 @@ $(function()
 	});
 
 	$project.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-    
 	    var $li = $('<li>'),
 	        $img = $('<img>');
 

@@ -16,6 +16,8 @@ class CreateBeerslistsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('logo');
+            $table->string('color');
+            $table->string('type');
             $table->integer('user_id')->index();
             $table->timestamps();
         });
