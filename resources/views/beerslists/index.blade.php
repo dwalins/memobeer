@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="container">
-        <div class="col-sm-offset-2 col-sm-8">
+        <div class="col-lg-offset-2 col-lg-8 col-lg-offset-2 
+                    col-md-offset-1 col-md-10 col-md-offset-1
+                    col-sm-12">
             <!-- Lists -->
 
             <div class="new-list-container col-sm-12">
@@ -90,9 +92,26 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <ul>
+                                    <ul class="listing-beers">
                                     @foreach ($list->beers as $beer)
-                                    <li>{{ $beer->name }}</li>
+
+                                    <li>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            @if($beer->logo_small_url)
+                                            <img src="{{ $beer->logo_small_url }}">
+                                            @else
+                                            <img src="http://www.brewerydb.com/img/beer.png">
+                                            @endif
+                                        </div>
+                                        <div class="col-sm-10 encart-beer-list">
+                                            <p><a href=""><strong>{{ $beer->brewery }} "{{ $beer->name }}"</strong></a>  ({{ $beer->abv }}°)</p>
+                                            <p>Beer type</p>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    </li>
+
                                     @endforeach
                                     </ul>
 

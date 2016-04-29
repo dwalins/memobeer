@@ -14,14 +14,14 @@ class CreateBeersTable extends Migration
     {
         Schema::create('beers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('api_id');
+            $table->string('api_id');
             $table->string('name');
+            $table->integer('style_id');
+            $table->string('brewery_id');
             $table->float('abv');
             $table->text('description');
             $table->string('logo_url');
             $table->string('logo_small_url');
-            $table->string('brewery');
-            $table->string('brewery_logo');
             $table->timestamps();
         });
     }

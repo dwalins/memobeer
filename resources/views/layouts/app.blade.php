@@ -74,6 +74,23 @@
         .btn-edit{
             /*color:#337ab7;*/
         }
+
+        .listing-beers{
+            padding-left:20px;
+        }
+        .listing-beers li{
+            list-style:none;
+            margin-bottom:5px;
+        }
+        .listing-beers p{
+            line-height: 80%;
+        }
+        .listing-beers img{
+            width:55%;
+        }
+        .encart-beer-list{
+            padding:7px;
+        }
     </style>
 </head>
 <body id="app-layout">

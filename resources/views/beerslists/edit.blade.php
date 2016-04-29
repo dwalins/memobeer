@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="container">
-        <div class="col-sm-offset-2 col-sm-8">
+        <div class="col-lg-offset-2 col-lg-8 col-lg-offset-2 
+                    col-md-offset-1 col-md-10 col-md-offset-1
+                    col-sm-12">
 
             <div class="col-sm-12 col-xs-12 beerslist">
 
@@ -31,7 +33,7 @@
                                     <div class="col-sm-2 col-xs-2 new-list-button">
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-default">
-                                                <i class="fa fa-btn fa-plus button expand"></i>Edit list name
+                                                <i class="fa fa-btn fa-edit button expand"></i>Edit
                                             </button>
                                         </div>
                                     </div>
@@ -46,12 +48,12 @@
                                         <!-- Beer Name -->
                                         <div class="form-group">
 
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-9 col-xs-9">
                                                 <input type="text" name="name" id="beer-name" class="beer-name-{{ $list->id }} form-control" value="{{ old('beer') }}" placeholder="ex. Tripel Karmeliet">
                                                 <input type="hidden" name="beerid" id="beerid">
                                                 <input type="hidden" name="beerslistid" id="beerslistid" value="{{ $list->id }}">
                                             </div>
-                                            <div class="col-sm-2">
+                                            <div class="col-sm-2 col-xs-2">
                                                 <button type="submit" class="btn btn-default">
                                                     <i class="fa fa-btn fa-plus button expand"></i>Add Beer
                                                 </button>
@@ -62,15 +64,14 @@
                                     @foreach ($list->beers as $beer)
                                     <li>{{ $beer->name }}
                                         <div class="btn-group">
-                                            <form action="/beer/{{ $list->id }}/{{ $beer->id }}" method="POST">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-
-                                            <button type="submit" id="delete-beer-{{ $beer->id }}" class="btn btn-danger">
-                                            <i class="fa fa-btn fa-trash"></i>Delete "{{ $beer->name }}" ?
-                                            </button>
-                                            </form>
-                                        </div>
+                                                <form action="/beer/{{ $list->id }}/{{ $beer->id }}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('DELETE') }}
+                                                    <button type="submit" class="borderless-button btn-delete" onclick="return confirm('Are you sure you want to delete this beer?');">
+                                                        <i class="fa fa-btn fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                    </div>
                                     </li>
 
                                     @endforeach
