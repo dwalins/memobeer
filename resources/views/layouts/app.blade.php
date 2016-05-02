@@ -21,6 +21,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ URL::asset('js/jquery-ui-1.11.4.custom/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/autocomplete.js') }}"></script>
+    {{-- <script type="text/javascript" src="{{ URL::asset('js/toggle_beer_form.js') }}"></script> --}}
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
     
     <style>
@@ -31,6 +32,9 @@
 
         a{
             color:#334D5C;
+        }
+        .form-add-beer{
+            display:none;
         }
 
         .fa-btn {
@@ -116,9 +120,9 @@
         .btn-group{
             color:#e7e7e7;
         }
-        html,
-    body,
-        #bubbles { height: 100% }
+
+
+    html,body,#bubbles { height: 100% }
 
     #bubbles { padding: 100px 0; z-index: -1; position:absolute; }
     .bubble {
@@ -284,7 +288,13 @@
             </div>
         </div>
     </nav>
-
+    <div id="bubbles">
+        <div class="bubble x1"></div>
+        <div class="bubble x2"></div>
+        <div class="bubble x3"></div>
+        <div class="bubble x4"></div>
+        <div class="bubble x5"></div>
+    </div>
     @yield('content')
 
 

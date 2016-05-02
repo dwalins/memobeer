@@ -24,7 +24,7 @@
                                     {{ csrf_field() }}
 
                                     <!-- List Name -->
-                                    <div class="col-sm-9 col-xs-9">
+                                    <div class="col-sm-8 col-xs-8">
                                         <div class="form-group">
                                             <input type="text" name="name" id="list-name" class="form-control" value="{{ $list->name }}">
                                         </div>
@@ -33,7 +33,7 @@
                                     <div class="col-sm-offset-1 col-xs-offset-1 col-sm-2 col-xs-2 new-list-button">
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-default">
-                                                <i class="fa fa-btn fa-edit button expand"></i>Edit
+                                                <i class="fa fa-btn fa-edit button expand"></i>Edit name
                                             </button>
                                         </div>
                                     </div>
@@ -60,9 +60,9 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <ul>
+                                    <ul class="listing-beers">
                                     @foreach ($list->beers as $beer)
-                                    <li>{{ $beer->name }}
+                                    <li>{{ $beer->brewery->name }} <strong>"{{ $beer->name }}"</strong>
                                         <div class="btn-group">
                                                 <form action="/beer/{{ $list->id }}/{{ $beer->id }}" method="POST">
                                                     {{ csrf_field() }}

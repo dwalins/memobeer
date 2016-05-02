@@ -1,13 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div id="bubbles">
-        <div class="bubble x1"></div>
-        <div class="bubble x2"></div>
-        <div class="bubble x3"></div>
-        <div class="bubble x4"></div>
-        <div class="bubble x5"></div>
-    </div>
+
     <div class="container">
         <div class="col-lg-offset-2 col-lg-8 col-lg-offset-2 
                     col-md-offset-1 col-md-10 col-md-offset-1
@@ -55,14 +49,27 @@
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">
 
-                                        <span class="panel-title">{{ $list->name }}</span>
+                                        <span class="panel-title">
+
+                                        <span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;{{ $list->name }}</span>
 
                                         <div class="btn-group pull-right">
+                                            <div class="btn-group">
+<!--                                                         <button class="borderless-button btn-add-beer" id="btn-add-beer-{{ $list->id }}">
+                                                            <i class="fa fa-btn fa-plus" title="Add a beer to this list"></i>
+                                                        </button> -->
+                                                    <form action="/list/{{ $list->id }}" method="GET">
+                                                        {{ csrf_field() }}
+                                                        <button class="borderless-button btn-add-beer" id="btn-add-beer-{{ $list->id }}">
+                                                            <i class="fa fa-btn fa-plus" title="Add a beer to this list"></i>
+                                                        </button>
+                                                    </form>
+                                            </div>
                                             <div class="btn-group">
                                                     <form action="/list/{{ $list->id }}" method="GET">
                                                         {{ csrf_field() }}
                                                         <button type="submit" class="borderless-button btn-edit">
-                                                            <i class="fa fa-btn fa-edit"></i>
+                                                            <i class="fa fa-btn fa-edit" title="Edit this list"></i>
                                                         </button>
                                                     </form>
                                             </div>
@@ -72,7 +79,7 @@
                                                         {{ csrf_field() }}
                                                         {{ method_field('DELETE') }}
                                                         <button type="submit" class="borderless-button btn-delete" onclick="return confirm('Are you sure you want to delete this list?');">
-                                                            <i class="fa fa-btn fa-trash"></i>
+                                                            <i class="fa fa-btn fa-trash" title="Delete this list"></i>
                                                         </button>
                                                     </form>
                                             </div>
@@ -81,14 +88,14 @@
                                     </div>
                                     <div class="panel-body">
                                     <!-- New Beer Form -->
-                                    <form action="/beer" method="POST" class="form-horizontal" style="display:none;">
+                                    <form action="/beer" method="POST" class="form-horizontal form-add-beer" id="input-btn-add-beer-{{ $list->id }}">
                                         {{ csrf_field() }}
 
                                         <!-- Beer Name -->
                                         <div class="form-group">
 
                                             <div class="col-sm-9">
-                                                <input type="text" name="name" id="beer-name" class="beer-name-{{ $list->id }} form-control" value="{{ old('beer') }}" placeholder="ex. Tripel Karmeliet">
+                                                <input type="text" name="name" id="beer-name" class="beer-name form-control" value="{{ old('beer') }}" placeholder="ex. Tripel Karmeliet">
                                                 <input type="hidden" name="beerid" id="beerid">
                                                 <input type="hidden" name="beerslistid" id="beerslistid" value="{{ $list->id }}">
                                             </div>
