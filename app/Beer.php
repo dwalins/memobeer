@@ -29,4 +29,14 @@ class Beer extends Model
         return $this->belongsToMany('App\Beerslist');
     }
 
+    public function style()
+    {
+        return $this->belongsTo('App\Style', 'style_id', 'id');
+    }
+
+    public function brewery()
+    {
+        return $this->belongsTo('App\Brewery', 'brewery_id', 'breweryId');
+    }
+
 }

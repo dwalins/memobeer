@@ -20,13 +20,13 @@ public function autocomplete(){
     
     $queries = DB::table('beers')
         ->where('name', 'LIKE', '%'.$term.'%')
-        ->orWhere('brewery', 'LIKE', '%'.$term.'%')
+        ->orWhere('brewery_name', 'LIKE', '%'.$term.'%')
         ->take(18)->get();
     
     foreach ($queries as $query)
     {
 
-        $results[] = [ 'id' => $query->id, 'value' => $query->name, 'brewery' => $query->brewery, 'url' => $query->logo_small_url, 'abv' => $query->abv ];
+        $results[] = [ 'id' => $query->id, 'value' => $query->name, 'brewery' => $query->brewery_name, 'url' => $query->logo_small_url, 'abv' => $query->abv];
     }
 return Response::json($results);
 }

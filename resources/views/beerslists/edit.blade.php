@@ -30,7 +30,7 @@
                                         </div>
                                     </div>
                                     <!-- Add list Button -->
-                                    <div class="col-sm-2 col-xs-2 new-list-button">
+                                    <div class="col-sm-offset-1 col-xs-offset-1 col-sm-2 col-xs-2 new-list-button">
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-default">
                                                 <i class="fa fa-btn fa-edit button expand"></i>Edit

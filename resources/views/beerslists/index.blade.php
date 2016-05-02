@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+    <div id="bubbles">
+        <div class="bubble x1"></div>
+        <div class="bubble x2"></div>
+        <div class="bubble x3"></div>
+        <div class="bubble x4"></div>
+        <div class="bubble x5"></div>
+    </div>
     <div class="container">
         <div class="col-lg-offset-2 col-lg-8 col-lg-offset-2 
                     col-md-offset-1 col-md-10 col-md-offset-1
@@ -24,13 +31,13 @@
                     {{ csrf_field() }}
 
                     <!-- List Name -->
-                    <div class="col-sm-8 col-xs-8">
+                    <div class="col-sm-9 col-xs-9">
                         <div class="form-group">
                             <input type="text" name="name" id="list-name" class="form-control" value="{{ old('list') }}" placeholder="ex. my new list">
                         </div>
                     </div>
                     <!-- Add list Button -->
-                    <div class="col-sm-2 col-xs-2 new-list-button">
+                    <div class="col-sm-offset-1 col-xs-offset-1 col-sm-2 col-xs-2 new-list-button">
                         <div class="form-group">
                             <button type="submit" class="btn btn-default">
                                 <i class="fa fa-btn fa-plus button expand"></i>New list
@@ -97,7 +104,7 @@
 
                                     <li>
                                     <div class="row">
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-2 hidden-xs">
                                             @if($beer->logo_small_url)
                                             <img src="{{ $beer->logo_small_url }}">
                                             @else
@@ -105,8 +112,8 @@
                                             @endif
                                         </div>
                                         <div class="col-sm-10 encart-beer-list">
-                                            <p><a href=""><strong>{{ $beer->brewery }} "{{ $beer->name }}"</strong></a>  ({{ $beer->abv }}°)</p>
-                                            <p>Beer type</p>
+                                            <p><a href="">{{ $beer->brewery->name }}  <strong>"{{ $beer->name }}"</strong> </a><span class="abv">{{ $beer->abv }}°</span></p>
+                                            <p><em>{{ $beer->style['name'] }}</em></p>
                                             <p></p>
                                         </div>
                                     </div>
@@ -124,4 +131,5 @@
 
     </div>
 </div>
+
 @endsection

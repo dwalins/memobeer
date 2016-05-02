@@ -18,11 +18,11 @@ class CreateBeersTable extends Migration
             $table->string('name');
             $table->integer('style_id');
             $table->string('brewery_id');
-            $table->float('abv');
+            $table->float('abv',3,1);
             $table->text('description');
             $table->string('logo_url');
             $table->string('logo_small_url');
-            $table->timestamps();
+            $table->string('brewery_name');
         });
     }
 
