@@ -10,6 +10,8 @@
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link href="{{ URL::asset('css/bootstrap-social.css') }}" rel='stylesheet' type='text/css'>
 
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -81,6 +83,9 @@
         .panel-body .btn-delete{
             color:#d9534f;
         }
+        .beerslist .panel-body{
+            padding-bottom:5px;
+        }
         .btn-edit{
             /*color:#337ab7;*/
         }
@@ -93,7 +98,7 @@
             margin-bottom:5px;
         }
         .listing-beers p{
-            line-height: 80%;
+            line-height: 70%;
         }
         .listing-beers img{
             width:55%;
@@ -119,6 +124,36 @@
         }
         .btn-group{
             color:#e7e7e7;
+        }
+
+        .btn-facebook{
+            width:260px;
+        }
+        .btn-facebook:hover{
+            color:white !important;
+            
+        }
+        .avatar-top{
+            width:30px;
+            margin-top:-5px;
+            margin-right:5px;
+            -webkit-border-radius:50px;
+            -moz-border-radius:50px;
+            border-radius:50px
+        }
+        .navbar-nav>li>a{
+            padding-bottom:10px;
+        }
+
+        .heart-container{
+            opacity: 0.4;
+            padding-top:7px;
+        }
+        .heart-container:hover{
+            opacity: 1;
+        }
+        .add-to-favorite{
+            font-size:20px;
         }
 
 
@@ -276,6 +311,12 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                @if(Auth::user()->avatar)
+                                <img src="{{ Auth::user()->avatar }}" class="avatar-top"> 
+                                @else
+                                <img src="images/no-avatar.png" class="avatar-top"> 
+                                @endif
+
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 

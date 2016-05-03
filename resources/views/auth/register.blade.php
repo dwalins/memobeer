@@ -71,6 +71,11 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i>Register
                                 </button>
+                                <a href="redirect" class="btn btn-social btn-facebook" style="width:175px;padding-right:0;">
+                                    <i class="fa fa-facebook"></i> Sign in with FB
+                                
+                                </a>
+                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
                             </div>
                         </div>
                     </form>

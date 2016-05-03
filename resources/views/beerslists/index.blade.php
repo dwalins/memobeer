@@ -107,6 +107,10 @@
                                         </div>
                                     </form>
                                     <ul class="listing-beers">
+
+                                    @if (count($list->beers) == 0)
+                                    <p>Begin to add beers in your list <a href="/list/{{ $list->id }}">here</a> !</p>
+                                    @endif
                                     @foreach ($list->beers as $beer)
 
                                     <li>
@@ -118,10 +122,13 @@
                                             <img src="http://www.brewerydb.com/img/beer.png">
                                             @endif
                                         </div>
-                                        <div class="col-sm-10 encart-beer-list">
+                                        <div class="col-sm-9 col-xs-11 encart-beer-list">
                                             <p><a href="">{{ $beer->brewery->name }}  <strong>"{{ $beer->name }}"</strong> </a><span class="abv">{{ $beer->abv }}°</span></p>
                                             <p><em>{{ $beer->style['name'] }}</em></p>
                                             <p></p>
+                                        </div>
+                                        <div class="col-sm-1 col-xs-1 heart-container">
+                                        <span class="glyphicon glyphicon-heart-empty add-to-favorite"></span>
                                         </div>
                                     </div>
                                     </li>
