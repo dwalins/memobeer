@@ -14,6 +14,15 @@
                 {{ Session::get('flash_message') }}
                 </div>
                 @endif
+                @if (count($errors) > 0)
+				    <div class="alert alert-danger">
+				        <ul>
+				            @foreach ($errors->all() as $error)
+				                <li>{{ $error }}</li>
+				            @endforeach
+				        </ul>
+				    </div>
+				@endif
 
                 <!-- Current lists -->
 
@@ -48,26 +57,33 @@
                                         <!-- Beer Name -->
                                         <div class="form-group">
 
-                                            <div class="col-sm-9 col-xs-9">
-                                                <input type="text" name="name" id="beer-name" class="beer-name-{{ $list->id }} form-control" value="{{ old('beer') }}" placeholder="ex. Tripel Karmeliet">
+                                            <div class="col-sm-8 col-xs-8">
+                                                <input type="text" name="name" id="beer-name" class="beer-name-{{ $list->id }} form-control" value="{{ old('beer') }}" placeholder="ex. Chouffe">
                                                 <input type="hidden" name="beerid" id="beerid">
                                                 <input type="hidden" name="beerslistid" id="beerslistid" value="{{ $list->id }}">
                                             </div>
                                             <div class="col-sm-2 col-xs-2">
-                                                <button type="submit" class="btn btn-default">
+                                                <button type="submit" name="add" class="btn btn-primary">
                                                     <i class="fa fa-btn fa-plus button expand"></i>Add Beer
+                                                </button>
+                                            </div>
+                                            <div class="col-sm-2 col-xs-2">
+                                                <button type="submit" name="search" class="btn btn-default">
+                                                    <i class="fa fa-btn fa-search button expand"></i>Search
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
+
+                                    @if(count($list->beers) > 0)
                                     <ul class="listing-beers">
                                     @foreach ($list->beers as $beer)
-                                    <li>{{ $beer->brewery->name }} <strong>"{{ $beer->name }}"</strong>
+                                    <li><a href="/brewery/{{$beer->brewery->id}}">{{ $beer->brewery->name }}</a> <a href="/beer/{{$beer->id}}">"<strong>{{ $beer->name }}</strong>"</a>
                                         <div class="btn-group">
                                                 <form action="/beer/{{ $list->id }}/{{ $beer->id }}" method="POST">
                                                     {{ csrf_field() }}
                                                     {{ method_field('DELETE') }}
-                                                    <button type="submit" class="borderless-button btn-delete" onclick="return confirm('Are you sure you want to delete this beer?');">
+                                                    <button type="submit" class="borderless-button btn-delete" onclick="return confirm('Are you sure you want to delete this item from your list?');">
                                                         <i class="fa fa-btn fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -76,6 +92,9 @@
 
                                     @endforeach
                                     </ul>
+                                    @else
+                                    <p><strong>Nothing here yet !</strong> <br>Add some items by typing the beer's (or the brewery's) first letters above.</p>
+                                    @endif
 
                                 </div>
                         </div>

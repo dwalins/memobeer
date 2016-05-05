@@ -10,8 +10,9 @@ use App\Http\Controllers\Controller;
 use App\Beer;
 use App\Beerslist;
 use App\Repositories\BeerRepository;
-
+use DB;
 use Session;
+use Illuminate\Support\Facades\Input;
 
 class BeerController extends Controller
 {
@@ -43,11 +44,14 @@ class BeerController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+
+        if(array_key_exists('add', Input::all())){
+
+            $this->validate($request, [
             'name' => 'required|max:255',
             'beerid' => 'required',
             'beerslistid' => 'required'
-        ]);
+            ]);
 
         $beer = Beer::find($request->beerid);
         $list = Beerslist::find($request->beerslistid);
@@ -58,8 +62,36 @@ class BeerController extends Controller
         
         return redirect('/list/'.$request->beerslistid);
 
- 
+        }else if(array_key_exists('search', Input::all())){
+
+            return redirect('/search/results/'.$request->name);
+            // $results = $this->search($request);
+            // return view('search.results', [
+            //     'results' => $results,
+            // ]);
+        }
+
     }
+
+    // public function search(Request $request){
+
+    //     $this->validate($request, [
+    //         'name' => 'required|max:255|min:3',
+    //     ]);
+
+    //     $term = $request->name;
+    //     $results = array();
+        
+    //     $queries = DB::table('beers')
+    //         ->where('name', 'LIKE', '%'.$term.'%')
+    //         ->orWhere('brewery_name', 'LIKE', '%'.$term.'%')->get();
+
+    //     $count = DB::table('beers')
+    //         ->where('name', 'LIKE', '%'.$term.'%')
+    //         ->orWhere('brewery_name', 'LIKE', '%'.$term.'%')->count();
+
+    //     return $queries;
+    // }
 
     /**
      * Destroy the given beer.
@@ -80,6 +112,16 @@ class BeerController extends Controller
         }
         Session::flash('flash_message', 'Beer successfully deleted !');
         return redirect('/list/'.$beerslist->id);
+
+    }
+
+    public function show($id){
+
+        $beer = Beer::find($id);
+
+        return view('beers.show', [
+            'beer' => $beer,
+        ]);
 
     }
 }

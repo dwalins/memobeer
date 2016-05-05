@@ -111,6 +111,15 @@
             color:#d9534f;
             margin-left:5px;
         }
+        .abv-no-margin{
+            color:#d9534f;
+
+        }
+
+        .beer-page-title{
+            text-transform: uppercase;
+            margin-bottom:20px;
+        }
         .panel-primary>.panel-heading{
             background-color:#334D5C;
             border-color:#334D5C;
@@ -118,6 +127,9 @@
         .panel-title{
             color:#e7e7e7;
             text-transform: uppercase;
+        }
+        .panel-body{
+            padding-right:49px;
         }
         .panel-primary{
             border-color:#334D5C;
@@ -127,7 +139,7 @@
         }
 
         .btn-facebook{
-            width:260px;
+            width:230px;
         }
         .btn-facebook:hover{
             color:white !important;
@@ -148,12 +160,35 @@
         .heart-container{
             opacity: 0.4;
             padding-top:7px;
+
         }
         .heart-container:hover{
             opacity: 1;
         }
         .add-to-favorite{
             font-size:20px;
+        }
+
+        .beer-list-attributes{
+            list-style: none;
+            padding-left:0;
+            margin-bottom:20px;
+        }
+
+        .beer-page-buttons{
+            margin-top:20px;
+        }
+
+        .search-listing-beers{
+            list-style: none;
+        }
+
+        .search-listing-beers li{
+            margin-bottom:15px;
+        }
+
+        .search-listing-beers img{
+            width:32px;
         }
 
 
@@ -321,6 +356,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/settings') }}"><i class="fa fa-btn fa-edit"></i>Settings</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>

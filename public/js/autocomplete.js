@@ -5,7 +5,6 @@ $(function()
 	var $project = $( "#beer-name" );
 	var idbeer = '';
 
-
 	 $project.autocomplete({
 	  source: "/search/autocomplete",
 	  minLength: 3,

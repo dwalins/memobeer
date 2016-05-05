@@ -27,7 +27,7 @@
                     <!-- List Name -->
                     <div class="col-sm-9 col-xs-9">
                         <div class="form-group">
-                            <input type="text" name="name" id="list-name" class="form-control" value="{{ old('list') }}" placeholder="ex. my new list">
+                            <input type="text" name="name" id="list-name" class="form-control" value="{{ old('list') }}" placeholder='ex. "my awesome list"'>
                         </div>
                     </div>
                     <!-- Add list Button -->
@@ -109,7 +109,7 @@
                                     <ul class="listing-beers">
 
                                     @if (count($list->beers) == 0)
-                                    <p>Begin to add beers in your list <a href="/list/{{ $list->id }}">here</a> !</p>
+                                    <p>Start to add beers in your list <a href="/list/{{ $list->id }}">here</a>.</p>
                                     @endif
                                     @foreach ($list->beers as $beer)
 
@@ -123,7 +123,7 @@
                                             @endif
                                         </div>
                                         <div class="col-sm-9 col-xs-11 encart-beer-list">
-                                            <p><a href="">{{ $beer->brewery->name }}  <strong>"{{ $beer->name }}"</strong> </a><span class="abv">{{ $beer->abv }}°</span></p>
+                                            <p><a href="/brewery/{{ $beer->brewery->id }}">{{ $beer->brewery->name }}</a>  <a href="/beer/{{ $beer->id }}">"<strong>{{ $beer->name }}</strong>" </a><span class="abv">{{ $beer->abv }}°</span></p>
                                             <p><em>{{ $beer->style['name'] }}</em></p>
                                             <p></p>
                                         </div>
