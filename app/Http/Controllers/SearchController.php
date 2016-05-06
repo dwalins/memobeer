@@ -39,7 +39,7 @@ class SearchController extends Controller
     }
 
 
-    // In BeerController. TODO : move it here.
+
     public function search($term){
 
         if(!empty($term) && isset($term) && $term != '' && strlen($term) > 2){
@@ -50,17 +50,25 @@ class SearchController extends Controller
             ->where('name', 'LIKE', '%'.$term.'%')
             ->orWhere('brewery_name', 'LIKE', '%'.$term.'%')->get();
 
-        // $count = DB::table('beers')
-        //     ->where('name', 'LIKE', '%'.$term.'%')
-        //     ->orWhere('brewery_name', 'LIKE', '%'.$term.'%')->count();
+        $count = DB::table('beers')
+            ->where('name', 'LIKE', '%'.$term.'%')
+            ->orWhere('brewery_name', 'LIKE', '%'.$term.'%')->count();
 
         return view('search.results', [
             'results' => $results,
+            'count' => $count
         ]);
         }
         else{
             return redirect('/');
         }
+
+    }
+
+    public function newsearch(){
+
+        // TODO...
+        return redirect('/');
 
     }
 }

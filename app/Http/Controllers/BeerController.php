@@ -44,7 +44,7 @@ class BeerController extends Controller
      */
     public function store(Request $request)
     {
-
+        // if "add beer"
         if(array_key_exists('add', Input::all())){
 
             $this->validate($request, [
@@ -62,6 +62,7 @@ class BeerController extends Controller
         
         return redirect('/list/'.$request->beerslistid);
 
+        // if "search" beer
         }else if(array_key_exists('search', Input::all())){
 
             return redirect('/search/results/'.$request->name);

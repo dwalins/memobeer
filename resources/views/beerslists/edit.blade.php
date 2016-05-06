@@ -14,15 +14,8 @@
                 {{ Session::get('flash_message') }}
                 </div>
                 @endif
-                @if (count($errors) > 0)
-				    <div class="alert alert-danger">
-				        <ul>
-				            @foreach ($errors->all() as $error)
-				                <li>{{ $error }}</li>
-				            @endforeach
-				        </ul>
-				    </div>
-				@endif
+                <!-- Display Validation Errors -->
+                @include('common.errors')
 
                 <!-- Current lists -->
 
@@ -63,7 +56,7 @@
                                                 <input type="hidden" name="beerslistid" id="beerslistid" value="{{ $list->id }}">
                                             </div>
                                             <div class="col-sm-2 col-xs-2">
-                                                <button type="submit" name="add" class="btn btn-primary">
+                                                <button type="submit" name="add" class="btn btn-primary btn-add-beer" disabled>
                                                     <i class="fa fa-btn fa-plus button expand"></i>Add Beer
                                                 </button>
                                             </div>
@@ -100,7 +93,12 @@
                         </div>
                         <div class="btn-group">
                         <a class="btn btn-default" href="/lists">
-                            <i class="fa fa-btn fa-chevron-left"></i>Back
+                            <i class="fa fa-btn fa-chevron-left"></i>View all my lists
+                        </a>
+                        </div>
+                        <div class="btn-group">
+                        <a class="btn btn-success" href="/list/{{ $list->id }}">
+                            <i class="fa fa-btn fa-beer"></i>View this list
                         </a>
                         </div>
                         <div class="btn-group">
@@ -108,8 +106,8 @@
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
 
-                            <button type="submit" id="delete-task-{{ $list->id }}" class="btn btn-danger">
-                            <i class="fa fa-btn fa-trash"></i>Delete "{{ $list->name }}" ?
+                            <button type="submit" id="delete-task-{{ $list->id }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this list?');">
+                            <i class="fa fa-btn fa-trash"></i>Delete this list
                             </button>
                             </form>
                         </div>

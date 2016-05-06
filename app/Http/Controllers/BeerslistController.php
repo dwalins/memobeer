@@ -106,7 +106,6 @@ class BeerslistController extends Controller
     public function edit_submit(Request $request, $list_id)
     {
 
-
         $this->validate($request, [
             'name' => 'required|max:255',
         ]);
@@ -117,5 +116,13 @@ class BeerslistController extends Controller
         $list->save();
         Session::flash('flash_message', 'List successfully edited !');
         return redirect('/lists');
+    }
+    
+
+    public function show($id){
+        $beerslist = Beerslist::find($id);
+        return view('beerslists.show', [
+            'list' => $beerslist,
+        ]);
     }
 }

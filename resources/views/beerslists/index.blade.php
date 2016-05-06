@@ -47,18 +47,18 @@
                         <!-- Current lists -->
 
                                 <div class="panel panel-primary">
-                                    <div class="panel-heading">
+                                    <div class="panel-heading index-panel-heading">
 
                                         <span class="panel-title">
 
-                                        <span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;{{ $list->name }}</span>
+                                        <span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;<a href="/list/{{$list->id}}">{{ $list->name }}</a></span>
 
                                         <div class="btn-group pull-right">
                                             <div class="btn-group">
 <!--                                                         <button class="borderless-button btn-add-beer" id="btn-add-beer-{{ $list->id }}">
                                                             <i class="fa fa-btn fa-plus" title="Add a beer to this list"></i>
                                                         </button> -->
-                                                    <form action="/list/{{ $list->id }}" method="GET">
+                                                    <form action="/edit/{{ $list->id }}" method="GET">
                                                         {{ csrf_field() }}
                                                         <button class="borderless-button btn-add-beer" id="btn-add-beer-{{ $list->id }}">
                                                             <i class="fa fa-btn fa-plus" title="Add a beer to this list"></i>
@@ -66,7 +66,7 @@
                                                     </form>
                                             </div>
                                             <div class="btn-group">
-                                                    <form action="/list/{{ $list->id }}" method="GET">
+                                                    <form action="/edit/{{ $list->id }}" method="GET">
                                                         {{ csrf_field() }}
                                                         <button type="submit" class="borderless-button btn-edit">
                                                             <i class="fa fa-btn fa-edit" title="Edit this list"></i>

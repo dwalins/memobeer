@@ -33,18 +33,21 @@ Route::group(['middleware' => ['web']], function () {
     // Route::delete('/beer/{beer}', 'BeerController@destroy');
 
     Route::get('/lists', 'BeerslistController@index');
-    Route::get('/list/{list_id}', 'BeerslistController@edit');
+    Route::get('/edit/{list_id}', 'BeerslistController@edit');
     Route::post('/list', 'BeerslistController@store');
     Route::post('/edit/{list_id}', 'BeerslistController@edit_submit');
     Route::delete('/list/{beerslist}', 'BeerslistController@destroy');
+
+    Route::get('/list/{list_id}', 'BeerslistController@show');
 
     Route::post('/beer', 'BeerController@store');
     Route::get('/beer/{id}', 'BeerController@show');
     Route::delete('/beer/{list_id}/{beer_id}', 'BeerController@destroy');
 
-        Route::get('/brewery/{id}', 'BreweryController@show');
+    Route::get('/brewery/{id}', 'BreweryController@show');
 
     Route::get('search/autocomplete', 'SearchController@autocomplete');
+    Route::get('/search/results', 'SearchController@newsearch');
     Route::get('/search/results/{term}', 'SearchController@search');
 
     Route::auth();

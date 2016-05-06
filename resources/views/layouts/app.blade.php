@@ -48,7 +48,7 @@
             padding-right:5px;
         }
         .ui-autocomplete-loading {
-            background: white url("images/ui-anim_basic_16x16.gif") right 5px center no-repeat;
+            background: white url("/images/ui-anim_basic_16x16.gif") right 5px center no-repeat;
           }
 
         .ui-autocomplete img{
@@ -189,6 +189,10 @@
 
         .search-listing-beers img{
             width:32px;
+        }
+        .index-panel-heading a:hover, .index-panel-heading button:hover{
+            color:white;
+            text-decoration: none;
         }
 
 
