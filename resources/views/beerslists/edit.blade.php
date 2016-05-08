@@ -31,7 +31,8 @@
                                             <input type="text" name="name" id="list-name" class="form-control" value="{{ $list->name }}">
                                         </div>
                                     </div>
-                                    <!-- Add list Button -->
+
+                                    <!-- Edit list Button -->
                                     <div class="col-sm-offset-1 col-xs-offset-1 col-sm-2 col-xs-2 new-list-button">
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-default">
@@ -39,44 +40,30 @@
                                             </button>
                                         </div>
                                     </div>
+
                                 </form>
 
                             </div>
                                 <div class="panel-body">
-                                    <!-- New Beer Form -->
-                                    <form action="/beer" method="POST" class="form-horizontal">
-                                        {{ csrf_field() }}
 
-                                        <!-- Beer Name -->
-                                        <div class="form-group">
-
-                                            <div class="col-sm-8 col-xs-8">
-                                                <input type="text" name="name" id="beer-name" class="beer-name-{{ $list->id }} form-control" value="{{ old('beer') }}" placeholder="ex. Chouffe">
-                                                <input type="hidden" name="beerid" id="beerid">
-                                                <input type="hidden" name="beerslistid" id="beerslistid" value="{{ $list->id }}">
-                                            </div>
-                                            <div class="col-sm-2 col-xs-2">
-                                                <button type="submit" name="add" class="btn btn-primary btn-add-beer" disabled>
-                                                    <i class="fa fa-btn fa-plus button expand"></i>Add Beer
-                                                </button>
-                                            </div>
-                                            <div class="col-sm-2 col-xs-2">
-                                                <button type="submit" name="search" class="btn btn-default">
-                                                    <i class="fa fa-btn fa-search button expand"></i>Search
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    <!-- Display add beer / search beer--> 
+                                    @include('search.search')
 
                                     @if(count($list->beers) > 0)
                                     <ul class="listing-beers">
                                     @foreach ($list->beers as $beer)
-                                    <li><a href="/brewery/{{$beer->brewery->id}}">{{ $beer->brewery->name }}</a> <a href="/beer/{{$beer->id}}">"<strong>{{ $beer->name }}</strong>"</a>
+                                    <li>
+                                     @if($beer->brewery)
+                                            <a href="/brewery/{{ $beer->brewery->id }}">{{ $beer->brewery->name }}</a>  
+                                            @else
+                                            unknown brewery
+                                            @endif
+                                    <a href="/beer/{{$beer->id}}">"<strong>{{ $beer->name }}</strong>"</a>
                                         <div class="btn-group">
                                                 <form action="/beer/{{ $list->id }}/{{ $beer->id }}" method="POST">
                                                     {{ csrf_field() }}
                                                     {{ method_field('DELETE') }}
-                                                    <button type="submit" class="borderless-button btn-delete" onclick="return confirm('Are you sure you want to delete this item from your list?');">
+                                                    <button type="submit" class="borderless-button btn-delete trash-container-edit" onclick="return confirm('Are you sure you want to delete this item from your list?');">
                                                         <i class="fa fa-btn fa-trash"></i>
                                                     </button>
                                                 </form>

@@ -16,6 +16,8 @@ class CreateBeerBeerslistPivotTable extends Migration
             $table->integer('beer_id')->unsigned()->index();
             $table->foreign('beer_id')->references('id')->on('beers')->onDelete('cascade');
             $table->integer('beerslist_id')->unsigned()->index();
+            $table->boolean('favorite');
+            $table->timestamps();
             $table->foreign('beerslist_id')->references('id')->on('beerslists')->onDelete('cascade');
             $table->primary(['beer_id', 'beerslist_id']);
         });

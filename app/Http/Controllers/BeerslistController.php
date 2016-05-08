@@ -62,9 +62,9 @@ class BeerslistController extends Controller
             'name' => 'required|max:255',
         ]);
 
-        $request->user()->beerslists()->create(['name' => $request->name, 'color' => 'blue']);
+        $insert = $request->user()->beerslists()->create(['name' => $request->name, 'color' => 'blue']);
         Session::flash('flash_message', 'List successfully created !');
-        return redirect('/lists');
+        return redirect('/list/'.$insert->id);
     }
 
     /**
@@ -115,7 +115,7 @@ class BeerslistController extends Controller
         $list->color = $request->color;
         $list->save();
         Session::flash('flash_message', 'List successfully edited !');
-        return redirect('/lists');
+        return redirect('/list/'.$list_id);
     }
     
 

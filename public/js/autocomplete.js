@@ -1,5 +1,14 @@
 $( document ).ready(function() {
-    
+
+//if "back" button is hit 
+var input= $('#beer-name').val();
+
+if(input && input.length > 2){
+	$('.beer-search-button').prop("disabled",false);
+}else{
+	$('.beer-search-button').prop("disabled",true);
+}
+
 $(function()
 {
 	var $project = $( "#beer-name" );
@@ -47,13 +56,20 @@ $(function()
   	};
 
   	$('#beer-name').keyup(function(){
+
   		$('.btn-add-beer').prop("disabled",true);
+
+  		var input= $('#beer-name').val();
+
+  		if(input && input.length > 2){
+  			$('.beer-search-button').prop("disabled",false);
+  		}else{
+  			$('.beer-search-button').prop("disabled",true);
+  		}
+
   	});
 
 
-  	$('.autocompleted-beer').click(function() {
-  		console.log("cliqué");
-	});
 
   	$('form').submit(function() {
     	$('#beerid').val(idbeer);

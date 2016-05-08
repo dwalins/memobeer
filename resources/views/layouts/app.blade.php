@@ -97,11 +97,14 @@
             list-style:none;
             margin-bottom:5px;
         }
-        .listing-beers p{
-            line-height: 70%;
+        .encart-beer-list p{
+            /*line-height: 70%;*/
+            margin-bottom:2px;
         }
+
+
         .listing-beers img{
-            width:55%;
+            width:75%;
         }
         .encart-beer-list{
             padding:7px;
@@ -169,6 +172,29 @@
             font-size:20px;
         }
 
+        .trash-container{
+            opacity: 0.4;
+            margin-top:5px;
+        }
+
+        .trash-container-edit{
+            opacity: 0.4;
+            margin-bottom:2px;
+        }
+        .trash-container-edit:hover{
+            opacity: 1;
+            color:#d9534f;
+        }
+
+        .trash-container i{
+            font-size:20px;
+        }
+
+        .trash-container:hover{
+            opacity: 1;
+            color:#d9534f;
+        }
+
         .beer-list-attributes{
             list-style: none;
             padding-left:0;
@@ -193,6 +219,14 @@
         .index-panel-heading a:hover, .index-panel-heading button:hover{
             color:white;
             text-decoration: none;
+        }
+        .beer-page-add-to-list{
+            background:none;
+            border:0;
+            color:black;
+        }
+        .beer-page-add-to-list:hover{
+            color:grey;
         }
 
 
@@ -343,6 +377,7 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
+
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>

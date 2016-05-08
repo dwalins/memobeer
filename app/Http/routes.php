@@ -44,6 +44,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/beer/{id}', 'BeerController@show');
     Route::delete('/beer/{list_id}/{beer_id}', 'BeerController@destroy');
 
+    Route::post('/beer/favorite', 'BeerController@add_to_favorite');
+
     Route::get('/brewery/{id}', 'BreweryController@show');
 
     Route::get('search/autocomplete', 'SearchController@autocomplete');

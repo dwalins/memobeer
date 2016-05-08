@@ -9,10 +9,13 @@ use App\Http\Controllers\Controller;
 
 use App\Beer;
 use App\Beerslist;
+use App\User;
 use App\Repositories\BeerRepository;
+use App\Repositories\BeerslistRepository;
 use DB;
 use Session;
 use Illuminate\Support\Facades\Input;
+use Auth;
 
 class BeerController extends Controller
 {
@@ -22,6 +25,12 @@ class BeerController extends Controller
      * @var BeerRepository
      */
     protected $beers;
+    /**
+     * The List repository instance.
+     *
+     * @var ListRepository
+     */
+    protected $beerslists;
 
     /**
      * Create a new controller instance.
@@ -29,10 +38,11 @@ class BeerController extends Controller
      * @param  BeerRepository  $Beers
      * @return void
      */
-    public function __construct(BeerRepository $beers)
+    public function __construct(BeerRepository $beers, BeerslistRepository $beerslists)
     {
         $this->middleware('auth');
         $this->beers = $beers;
+        $this->beerslists = $beerslists;
     }
 
 
@@ -53,8 +63,16 @@ class BeerController extends Controller
             'beerslistid' => 'required'
             ]);
 
+        $results = DB::table('beer_beerslist')->where('beer_id', '=', $request->beerid)->where('beerslist_id', '=', $request->beerslistid)->count();
+        if($results > 0){
+            Session::flash('flash_message', 'You have already added this beer to this list !');
+            return redirect('/list/'.$request->beerslistid);
+        }
+
         $beer = Beer::find($request->beerid);
         $list = Beerslist::find($request->beerslistid);
+
+
 
         $list->beers()->attach($beer);
 
@@ -119,10 +137,22 @@ class BeerController extends Controller
     public function show($id){
 
         $beer = Beer::find($id);
+        $beerslists = '';
+
+        if(Auth::check()){
+            $user_id = Auth::id();
+            $user = User::find($user_id);
+            $beerslists = $this->beerslists->forUser($user);
+        }
 
         return view('beers.show', [
             'beer' => $beer,
+            'beerslists' => $beerslists
         ]);
 
+    }
+
+    public function add_to_favorite(){
+        
     }
 }
