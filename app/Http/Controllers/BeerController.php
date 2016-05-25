@@ -45,6 +45,76 @@ class BeerController extends Controller
         $this->beerslists = $beerslists;
     }
 
+    public function index(){
+
+        $beers = Beer::all()->random(12);
+        $beerslists = '';
+
+        if(Auth::check()){
+            $user_id = Auth::id();
+            $user = User::find($user_id);
+            $beerslists = $this->beerslists->forUser($user);
+        }
+
+        return view('beers.index', [
+            'beers' => $beers,
+            'beerslists' => $beerslists
+        ]);
+
+    }
+
+    public function alphabetical($letter = 'A'){
+
+
+        if($letter == '1-9'){
+            $beers = Beer::where('name', 'NOT LIKE', 'A%')
+                ->where('name', 'NOT LIKE', 'B%')
+                ->where('name', 'NOT LIKE', 'C%')
+                ->where('name', 'NOT LIKE', 'D%')
+                ->where('name', 'NOT LIKE', 'E%')
+                ->where('name', 'NOT LIKE', 'F%')
+                ->where('name', 'NOT LIKE', 'G%')
+                ->where('name', 'NOT LIKE', 'H%')
+                ->where('name', 'NOT LIKE', 'I%')
+                ->where('name', 'NOT LIKE', 'J%')
+                ->where('name', 'NOT LIKE', 'K%')
+                ->where('name', 'NOT LIKE', 'L%')
+                ->where('name', 'NOT LIKE', 'M%')
+                ->where('name', 'NOT LIKE', 'N%')
+                ->where('name', 'NOT LIKE', 'O%')
+                ->where('name', 'NOT LIKE', 'P%')
+                ->where('name', 'NOT LIKE', 'Q%')
+                ->where('name', 'NOT LIKE', 'R%')
+                ->where('name', 'NOT LIKE', 'S%')
+                ->where('name', 'NOT LIKE', 'T%')
+                ->where('name', 'NOT LIKE', 'U%')
+                ->where('name', 'NOT LIKE', 'V%')
+                ->where('name', 'NOT LIKE', 'W%')
+                ->where('name', 'NOT LIKE', 'X%')
+                ->where('name', 'NOT LIKE', 'Y%')
+                ->where('name', 'NOT LIKE', 'Z%') 
+                ->paginate(15);
+        }else{
+            $beers = Beer::where('name', 'LIKE', $letter.'%')->paginate(15);
+        }
+        //$beers = Beer::where('name', 'LIKE', $letter.'%')->paginate(15);
+        $beerslists = '';
+
+        if(Auth::check()){
+            $user_id = Auth::id();
+            $user = User::find($user_id);
+            $beerslists = $this->beerslists->forUser($user);
+        }
+
+        return view('beers.index', [
+            'beers' => $beers,
+            'beerslists' => $beerslists,
+            'letter' => $letter
+        ]);
+
+    }
+
+
 
     /**
      * Create a new beer.
@@ -83,7 +153,14 @@ class BeerController extends Controller
         // if "search" beer
         }else if(array_key_exists('search', Input::all())){
 
-            return redirect('/search/results/'.$request->name);
+            if (strpos($request->name, '/'))
+                $search_term = strstr($request->name, "/",true);
+            else
+                $search_term = $request->name;
+
+            
+
+            return redirect('/search/results/'.$search_term);
             // $results = $this->search($request);
             // return view('search.results', [
             //     'results' => $results,

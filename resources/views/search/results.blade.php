@@ -33,6 +33,7 @@
                     @else
                     <p>Nothing found ! :-(</p>
                     @endif
+                    <div class="pagination-container">{!! $results->render() !!}</div>
                     <div class="beer-page-buttons">
                         <div class="btn-group">
                             <a href="javascript:history.back()" class="btn btn-default">

@@ -27,10 +27,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', function () {
         return view('welcome');
     })->middleware('guest');
-
-    // Route::get('/beers', 'BeerController@index');
-    // Route::post('/beer', 'BeerController@store');
-    // Route::delete('/beer/{beer}', 'BeerController@destroy');
+    // Route::get('/', function () {
+    //     return view('welcome');
+    // });
 
     Route::get('/lists', 'BeerslistController@index');
     Route::get('/edit/{list_id}', 'BeerslistController@edit');
@@ -44,9 +43,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/beer/{id}', 'BeerController@show');
     Route::delete('/beer/{list_id}/{beer_id}', 'BeerController@destroy');
 
+    Route::get('/beers', 'BeerController@alphabetical');
+    Route::get('/beers/{letter}', 'BeerController@alphabetical');
+
     Route::post('/beer/favorite', 'BeerController@add_to_favorite');
 
+    Route::get('/brewerys/', 'BreweryController@alphabetical');
     Route::get('/brewery/{id}', 'BreweryController@show');
+    Route::get('/brewerys/{letter}', 'BreweryController@alphabetical');
 
     Route::get('search/autocomplete', 'SearchController@autocomplete');
     Route::get('/search/results', 'SearchController@newsearch');

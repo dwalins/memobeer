@@ -95,7 +95,7 @@
                             @else
                             unknown brewery
                             @endif
-                            <a href="/beer/{{ $beer->id }}">"<strong>{{ $beer->name }}</strong>" </a><span class="abv">{{ $beer->abv }}°</span></p>
+                            <a href="/beer/{{ $beer->id }}">"<strong>{{ $beer->name }}</strong>" </a>@if($beer->abv)<span class="abv">{{ $beer->abv }}°</span>@endif</p>
                             <p class="listing-beers-style"><em>{{ $beer->style['name'] }}</em></p>
                         </div>
                         <div class="col-sm-1 col-xs-1 heart-container" style="display:none;">

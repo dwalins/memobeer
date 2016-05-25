@@ -156,9 +156,7 @@
             -moz-border-radius:50px;
             border-radius:50px
         }
-        .navbar-nav>li>a{
-            padding-bottom:10px;
-        }
+
 
         .heart-container{
             opacity: 0.4;
@@ -228,6 +226,50 @@
         .beer-page-add-to-list:hover{
             color:grey;
         }
+        .login-button, .register-button, .btn-facebook{
+            margin-bottom:5px;
+        }
+        .navbar-right{
+            height:20px;
+        }
+        .container-single-beer .thumbnail{
+            height:480px;
+        }
+        .single-beer-description{
+            height:85px;
+        }
+
+        .pagination-container{
+            text-align:center;
+        }
+        .pagination-container .btn-toolbar .btn-group{
+            float:none !important;
+        }
+        .footer{
+            padding:30px;
+            text-align: center;
+        }
+        .brewery-logo-container{
+            height:100px;
+        }
+        .container-single-brewery .thumbnail{
+            height:280px;
+        }
+        .single-brewery-description{
+            height:75px;
+        }
+/*        .navbar-brand{
+
+            padding: 15px 15px;
+            color:#334D5C !important;
+        }
+        .navbar-brand:hover{
+            color:#337ab7 !important;
+        }
+        .navbar-nav>li>a{
+            padding-bottom:10px;
+        }*/
+
 
 
     html,body,#bubbles { height: 100% }
@@ -350,60 +392,11 @@
 
     </style>
 </head>
-<body id="app-layout">
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+    <body id="app-layout">
 
-                <!-- Branding Image -->
-                <a href="{{ url('/') }}"><img src="{{asset("/images/icon-top-small.png")}}" class="icon-top"></a>
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Memobeer
-                </a>
-            </div>
+    @include('menu.top')
 
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                @if(Auth::user()->avatar)
-                                <img src="{{ Auth::user()->avatar }}" class="avatar-top"> 
-                                @else
-                                <img src="images/no-avatar.png" class="avatar-top"> 
-                                @endif
-
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/settings') }}"><i class="fa fa-btn fa-edit"></i>Settings</a></li>
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
-            </div>
-        </div>
-    </nav>
     <div id="bubbles">
         <div class="bubble x1"></div>
         <div class="bubble x2"></div>
@@ -411,8 +404,9 @@
         <div class="bubble x4"></div>
         <div class="bubble x5"></div>
     </div>
+
     @yield('content')
 
-
-</body>
+    @include('footer')
+    </body>
 </html>

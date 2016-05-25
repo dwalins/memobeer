@@ -48,7 +48,7 @@ class SearchController extends Controller
 
         $results = DB::table('beers')
             ->where('name', 'LIKE', '%'.$term.'%')
-            ->orWhere('brewery_name', 'LIKE', '%'.$term.'%')->get();
+            ->orWhere('brewery_name', 'LIKE', '%'.$term.'%')->paginate(40);
 
         $count = DB::table('beers')
             ->where('name', 'LIKE', '%'.$term.'%')

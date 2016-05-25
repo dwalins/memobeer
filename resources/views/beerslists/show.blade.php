@@ -21,7 +21,8 @@
                 <!-- Display add beer / search beer--> 
                 @include('search.search')
         </div>
-
+         <h3 style="color:#334D5C;">List "{{ $list->name }}"</h3>
+         <br>
         @include('beerslists.list')
 
         <div class="col-sm-12 col-xs-12">
