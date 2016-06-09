@@ -11,9 +11,8 @@
 
                 <div class="panel-body">
                     <center><img src="images/logo-welcome-text.png"></center>
-                    <p>Please <a href="login">login</a> and have a beer.</p>
-                    <p>Lorem dim sum Haam sui gau Jiu cai bau Zhaliang Pei guen Lo baak gou Taro cake Deep fried pumpkin and egg-yolk ball vegetarian crisp spring</p>
-                    <p>Cheong fan pan fried bitter melon beef dumpling mango pudding coconut milk pudding black sesame soft ball deep fried bean curd skin rolls rice noodle roll. Chicken feet Potstickers stir fried radish cake Steamed Bun with Butter Cream hot raw fish slices porridge traditional steamed glutinous rice with zhu hao sauce crispy yam puff crispy dragon roll honeydew puree with sago.</p>
+                    <p>Please <a href="login">login</a> and have a beer. </p>
+                    <p>This applications allows you to browse beers & breweries (thanks to the <a href="http://www.brewerydb.com/">BreweryDB</a> API) and create your own list(s).</p>
 
                     <p><strong>If you're new here, you can...</strong></p>
 
