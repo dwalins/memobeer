@@ -23,7 +23,7 @@
                         <form action="/list/{{ $list->id }}" method="GET">
                             {{ csrf_field() }}
                             <button class="borderless-button btn-add-beer" id="btn-add-beer-{{ $list->id }}">
-                                <i class="fa fa-btn fa-plus" title="Add a beer to this list"></i>
+                                <i class="fa fa-btn fa-plus" title="Add a beer to this list"></i>Add a beer
                             </button>
                         </form>
                 </div>
@@ -31,7 +31,7 @@
                         <form action="/edit/{{ $list->id }}" method="GET">
                             {{ csrf_field() }}
                             <button type="submit" class="borderless-button btn-edit">
-                                <i class="fa fa-btn fa-edit" title="Edit this list"></i>
+                                <i class="fa fa-btn fa-edit" title="Edit this list"></i>Edit list
                             </button>
                         </form>
                 </div>
@@ -40,7 +40,7 @@
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <button type="submit" class="borderless-button btn-delete" onclick="return confirm('Are you sure you want to delete this list?');">
-                                <i class="fa fa-btn fa-trash" title="Delete this list"></i>
+                                <i class="fa fa-btn fa-trash" title="Delete this list"></i>Delete list
                             </button>
                         </form>
                 </div>

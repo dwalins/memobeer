@@ -36,9 +36,9 @@ return [
     ],
     //Socialite
     'facebook' => [
-        'client_id'     => '170224580039471',
-        'client_secret' => 'cebcc476d1f2ed5c787ca09f6ef1e58d',
-        'redirect'      => 'http://memobeer.local/login/callback/facebook',
+        'client_id'     => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect'      => env('FACEBOOK_REDIRECT'),
     ],
 
 ];
